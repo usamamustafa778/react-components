@@ -1,6 +1,18 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Box, Container, makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  heading: {
+    textAlign: "center",
+    marginTop: 30,
+    fontWeight: 600,
+  },
+  apiContainer:{
+    padding:"50px 10px"
+  }
+}));
 
 function ZipCodes({ zips, setApiData3, setLoading, loading, apiData3 }) {
   const { state, city } = useParams();
@@ -25,16 +37,21 @@ function ZipCodes({ zips, setApiData3, setLoading, loading, apiData3 }) {
     handleClick2();
   }, [state, city]);
 
+  const classes = useStyles();
+
   return (
-    <>
-      {zips
-        ? zips.map((city, i) => (
-            <p>
-              <li>{city}</li>
-            </p>
-          ))
-        : null}
-    </>
+    <Box>
+      <Container className={classes.apiContainer}>
+        <Typography className={classes.heading} variant="h4">Areas We Serve</Typography>
+        {zips
+          ? zips.map((city, i) => (
+              <p>
+                <li>{city}</li>
+              </p>
+            ))
+          : null}
+      </Container>
+    </Box>
   );
 }
 

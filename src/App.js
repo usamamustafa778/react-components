@@ -8,7 +8,8 @@ import Work from "./Components/Work";
 import axios from "axios";
 import ServiceArea from "./Components/ServiceArea";
 import ZipCodes from "./Components/ZipCodes";
-import { Container, makeStyles, Box } from "@material-ui/core";
+import { Container, makeStyles, Box, Typography } from "@material-ui/core";
+import DocumentMeta from "react-document-meta";
 
 
 const useStyles = makeStyles({
@@ -67,12 +68,14 @@ function App() {
       <Work />
       <Services />
       <CTA />
+      <DocumentMeta {...meta} />
       <Box>
         <Routes>
           <Route
             path="/"
             element={
               <Container className={classes.apiContainer}>
+                <Typography className={classes.heading} variant="h4">Areas We Serve</Typography>
                 {states
                   ? states.map((state, i) => (
                       <Link
@@ -90,7 +93,7 @@ function App() {
               </Container>
             }
           />{" "}
-          {/* <Route
+          <Route
           path="/:state"
           element={
             <ServiceArea
@@ -114,7 +117,7 @@ function App() {
               />
             </>
           }
-        ></Route> */}
+        ></Route>
         </Routes>
       </Box>
       <Footer />

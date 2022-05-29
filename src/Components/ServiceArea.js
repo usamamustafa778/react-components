@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
   apiContainer: {
     padding: "50px 10px",
   },
+  list:{
+    columnCount:"4",
+    WebkitColumnCount:"4"
+  }
 }));
 
 function ServiceArea({ apiData2, setApiData2, loading, setLoading }) {
@@ -49,6 +53,7 @@ function ServiceArea({ apiData2, setApiData2, loading, setLoading }) {
           Areas We Serve
         </Typography>
         <Typography>cities</Typography>
+        <ul className={classes.list}>
         {cities
           ? cities.map((city, i) => (
               <Link to={`/${state}/${city.replace(/\s/g, "-")}`}>
@@ -56,6 +61,7 @@ function ServiceArea({ apiData2, setApiData2, loading, setLoading }) {
               </Link>
             ))
           : null}
+        </ul>
       </Container>
     </Box>
   );

@@ -9,8 +9,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 30,
     fontWeight: 600,
   },
-  apiContainer:{
-    padding:"50px 10px"
+  apiContainer: {
+    padding: "50px 10px",
+  },
+  list:{
+    columnCount:"4",
+    WebkitColumnCount:"4"
   }
 }));
 
@@ -42,14 +46,18 @@ function ZipCodes({ zips, setApiData3, setLoading, loading, apiData3 }) {
   return (
     <Box>
       <Container className={classes.apiContainer}>
-        <Typography className={classes.heading} variant="h4">Areas We Serve</Typography>
-        {zips
-          ? zips.map((city, i) => (
-              <p>
-                <li>{city}</li>
-              </p>
-            ))
-          : null}
+        <Typography className={classes.heading} variant="h4">
+          Areas We Serve
+        </Typography>
+        <ul className={classes.list}>
+          {zips
+            ? zips.map((city, i) => (
+                <p>
+                  <li>{city}</li>
+                </p>
+              ))
+            : null}
+        </ul>
       </Container>
     </Box>
   );

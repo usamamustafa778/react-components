@@ -15,6 +15,20 @@ import DocumentMeta from "react-document-meta";
 const useStyles = makeStyles({
   apiContainer:{
     padding:"50px 10px"
+  },
+  heading: {
+    textAlign: "center",
+    marginTop: 30,
+    fontWeight: 600,
+  },
+  listItem:{
+    listStyle:"none",
+    color:"#010101",
+    margin:"5px 0px"
+  },
+  list:{
+    columnCount:"4",
+    WebkitColumnCount:"4"
   }
 })
 
@@ -76,6 +90,7 @@ function App() {
             element={
               <Container className={classes.apiContainer}>
                 <Typography className={classes.heading} variant="h4">Areas We Serve</Typography>
+                <ul className={classes.list}>
                 {states
                   ? states.map((state, i) => (
                       <Link
@@ -86,10 +101,11 @@ function App() {
                         }}
                         to={`/${state.replace(/\s/g, "-")}`}
                       >
-                        <li>{state}</li>
+                        <li className={classes.listItem}>{state}</li>
                       </Link>
                     ))
                   : null}
+                </ul>
               </Container>
             }
           />{" "}

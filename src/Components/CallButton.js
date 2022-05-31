@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         cursor:"pointer",
         transition:"0.15s",
         maxHeight:60,
-        maxWidth:"160px",
+        maxWidth:"250px",
         '&:hover': {
             boxShadow:"0px 40px 60px rgba(0, 0, 0, 0.591)"
          },

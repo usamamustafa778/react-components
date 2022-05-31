@@ -1,13 +1,12 @@
 import { Box, Container, makeStyles, Typography } from "@material-ui/core";
 import React from "react";
 import CallButton from "./CallButton";
-import Header from "./Header";
 
 const useStyles = makeStyles((theme) => ({
   hero:{
     backgroundImage:"url(/images/banner-img1.jpg)",
-    minHeight:"100vh",
-    backgroundPosition:"center",
+    minHeight:"70vh",
+    backgroundPosition:"top",
     backgroundSize:"cover",
     color:"#ffff",
     textAlign:"center"
@@ -17,8 +16,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems:"center",
     flexDirection:"column",
     justifyContent:"center",
-    padding:"50px 0px",
-    marginTop:"50px",
+    padding:"90px 0px",
   },
   dividerLine:{
     marginTop:40,
@@ -30,23 +28,44 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("lg")]:{
       display:"block"
     }
+  },
+  searchBar:{
+    display:"flex",
+    alignItems:"center",
+    backgroundColor:"#ffff",
+    justifyContent:"between",
+    borderRadius:"100px",
+    padding:15,
+    width:"100%",
+    maxWidth:400,
+    marginTop:20
+  },
+  searchInput:{
+    outline:"none",
+    border:"none",
+    width:"90%",
+    marginLeft:10,
+    height:"100%",
+    fontSize:"18px"
   }
 }));
 
 function Hero() {
-
   const classes = useStyles();
-
   return (
     <Box className={classes.hero}>
-      <Header />
       <Container className={classes.heroContainer}>
-        <Typography variant="h4">Towing Services</Typography>
-        <Typography variant="h1">Alabama</Typography>
+        <Typography variant="h1">Towing Services</Typography>
+        <br />
+        <Typography variant="h2">Alabama</Typography>
         <br />
         <CallButton/>
         <Box className={classes.dividerLine}></Box>
         <Typography variant="h6">24 HOUR EMERGENCY SERVICE & ROADSIDE ASSISTANCE</Typography>
+        <Box className={classes.searchBar}>
+          <input type="text" className={classes.searchInput} placeholder="Search location" />
+          <img className={classes.searchIcon}  src="/images/icons/searchIcon.png" alt="" />
+        </Box>
       </Container>  
     </Box>
   );

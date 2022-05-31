@@ -14,3 +14,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.displayNav{
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0009;
+  backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  transform: translateY(0vh);
+  flex-direction: column;
+  align-items: center;
+}
+.navbarPhone{
+  transition: 0.5s;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0009;
+  backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  display: flex;
+  z-index: 10;
+  transform: translateY(-110vh);
+  flex-direction: column;
+  align-items: center;
+}

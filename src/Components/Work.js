@@ -52,19 +52,19 @@ function Work() {
         <Box className={classes.row}>
           <WorkComponent
             img="./images/icons/ph-icn.png"
-            title="Request Help"
+            title="1. Request Help"
             des="It is a long established fact that a reader will be distracted by the
                         readable content"
           />
           <WorkComponent
             img="./images/icons/truck-icn.png"
-            title="Truck Show Up"
+            title="2. Truck Show Up"
             des="It is a long established fact that a reader will be distracted by the
                         readable content"
           />
           <WorkComponent
             img="./images/icons/tow-icn.png"
-            title="Off You Go"
+            title="3. Off You Go"
             des="It is a long established fact that a reader will be distracted by the
                         readable content"
           />

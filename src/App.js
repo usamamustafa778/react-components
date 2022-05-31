@@ -10,6 +10,8 @@ import ServiceArea from "./Components/ServiceArea";
 import ZipCodes from "./Components/ZipCodes";
 import { Container, makeStyles, Box, Typography } from "@material-ui/core";
 import DocumentMeta from "react-document-meta";
+import Navbar from "./Components/Navbar/NavBar";
+import NavbarPhone from "./Components/Navbar/NavBarPhone";
 
 
 const useStyles = makeStyles({
@@ -78,6 +80,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar/>
       <Hero />
       <Work />
       <Services />

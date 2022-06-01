@@ -169,14 +169,17 @@ export default function Navbar(props: Props) {
   const classes = useStyles();
   // Displaying Phone Navbar
   const [style, setStyle] = useState("navbarPhone");
+  const [toolbarStyle, setToolbarStyle] = useState("toobarStyle");
 
   // Changing Style 
   const changeStyle = () => {
     if(style==="navbarPhone"){
       setStyle("displayNav");
+      setToolbarStyle("hideToolbar")
     }
     else{
       setStyle("navbarPhone");
+      setToolbarStyle("toolbarStyle")
     }
   };
 
@@ -190,7 +193,7 @@ export default function Navbar(props: Props) {
       <CssBaseline />
       <HideOnScroll {...props}>
         <AppBar>
-          <Toolbar sx={{ backgroundColor: "#ffc000" }}>
+          <Toolbar className={toolbarStyle} sx={{ backgroundColor: "#ffc000" }}>
             <Box className={classes.navBar}>
               <Box className={classes.navLeft}>
                 <Link to="/" className={classes.navLink}><Typography>Home</Typography></Link>

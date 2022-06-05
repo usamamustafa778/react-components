@@ -1,75 +1,99 @@
 import { Box, Container, makeStyles, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import CallButton from "./CallButton";
+import SearchBar from "./SearchBar";
+import Locations from "../Data.json"
 
 const useStyles = makeStyles((theme) => ({
-  hero:{
-    backgroundImage:"url(/images/banner-img1.jpg)",
-    minHeight:"70vh",
-    backgroundPosition:"top",
-    backgroundSize:"cover",
-    color:"#ffff",
-    textAlign:"center"
+  hero: {
+    backgroundImage: "url(/images/banner-img1.jpg)",
+    minHeight: "70vh",
+    backgroundPosition: "top",
+    backgroundSize: "cover",
+    color: "#ffff",
+    textAlign: "center",
   },
-  heroContainer:{
-    display:"flex",
-    alignItems:"center",
-    flexDirection:"column",
-    justifyContent:"center",
-    padding:"90px 0px",
+  heroContainer: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+    padding: "90px 0px",
   },
-  dividerLine:{
-    marginTop:40,
-    marginBottom:10,
-    height:2,
-    minWidth:400,
-    display:"none",
-    backgroundColor:"#ffff" ,
-    [theme.breakpoints.up("lg")]:{
-      display:"block"
-    }
+  dividerLine: {
+    marginTop: 40,
+    marginBottom: 10,
+    height: 2,
+    minWidth: 400,
+    display: "none",
+    backgroundColor: "#ffff",
+    [theme.breakpoints.up("lg")]: {
+      display: "block",
+    },
   },
-  searchBar:{
-    display:"flex",
-    alignItems:"center",
-    backgroundColor:"#ffff",
-    justifyContent:"between",
-    borderRadius:"100px",
-    padding:15,
-    width:"100%",
-    maxWidth:400,
-    marginTop:20
+  searchBar: {
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "#ffff",
+    justifyContent: "between",
+    borderRadius: "100px",
+    padding: 12,
+    width: "100%",
+    maxWidth: 400,
+    marginTop: 20,
   },
-  searchInput:{
-    outline:"none",
-    border:"none",
-    width:"90%",
-    marginLeft:10,
-    height:"100%",
-    fontSize:"18px"
-  }
+  searchInput: {
+    outline: "none",
+    border: "none",
+    width: "90%",
+    marginLeft: 10,
+    height: "100%",
+    fontSize: "18px",
+  },
+  dataResult: {
+    width: 400,
+    height: 200,
+    borderRadius: 5,
+    textAlign: "left",
+    backgroundColor: "#ffff",
+    boxShadow: "#0009 0px 2px 10px",
+    marginTop: 5,
+    color: "#000",
+    overflowX: "hidden",
+    overflowY: "auto",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  },
+  dataItem: {
+    padding: "15px 20px",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#f3f3f3",
+    },
+  },
 }));
 
 function Hero() {
+  
   const classes = useStyles();
+
   return (
     <Box className={classes.hero}>
       <Container className={classes.heroContainer}>
         <Typography variant="h1">Towing Services</Typography>
         <br />
-        <Typography variant="h2">Alabama</Typography>
+        <Typography variant="h2">LA, California</Typography>
         <br />
-        <CallButton/>
+        <CallButton />
         <Box className={classes.dividerLine}></Box>
-        <Typography variant="h6">24 HOUR EMERGENCY SERVICE & ROADSIDE ASSISTANCE</Typography>
-        <Box className={classes.searchBar}>
-          <input type="text" className={classes.searchInput} placeholder="Search location" />
-          <img className={classes.searchIcon}  src="/images/icons/searchIcon.png" alt="" />
-        </Box>
-      </Container>  
+        <Typography variant="h6">
+          24 HOUR EMERGENCY SERVICE & ROADSIDE ASSISTANCE
+        </Typography>
+        <SearchBar placeholder="Search Location..." data={Locations} />
+      </Container>
     </Box>
   );
 }
 
 export default Hero;
-

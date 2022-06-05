@@ -9,6 +9,10 @@ import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import InfoIcon from "@mui/icons-material/Info";
+import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
+import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 
 const useStyles = makeStyles((theme) => ({
   navBar: {
@@ -21,22 +25,22 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       display: "grid",
       gridTemplateColumns: "1fr 0.75fr 1fr",
-    }
+    },
   },
   navLeft: {
     display: "none",
     alignItems: "center",
     justifyContent: "end",
     [theme.breakpoints.up("md")]: {
-      display: "flex"
-    }
+      display: "flex",
+    },
   },
   navRight: {
     display: "none",
     alignItems: "center",
     [theme.breakpoints.up("md")]: {
-      display: "flex"
-    }
+      display: "flex",
+    },
   },
   navMiddle: {
     display: "flex",
@@ -47,23 +51,28 @@ const useStyles = makeStyles((theme) => ({
     height: 50,
     [theme.breakpoints.up("md")]: {
       height: 60,
-    }
+    },
   },
   navLink: {
     margin: "0px 20px",
-    color: "#000",
+    color: "#101010",
+    display: "flex",
+    alignItems: "center",
     textDecoration: "none",
     transition: "0.25s",
-    '&:hover': {
-      color: "red"
+    "&:hover": {
+      color: "#fff",
     },
+  },
+  linkText: {
+    marginLeft: 10,
   },
   menuIcon: {
     display: "block",
     cursor: "pointer",
     [theme.breakpoints.up("md")]: {
-      display: "none"
-    }
+      display: "none",
+    },
   },
 
   // Navbar for phone styling
@@ -72,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: "#0009",
     backdropFilter: "blur(8px)",
-    position: 'fixed',
+    position: "fixed",
     top: 0,
     transform: "translateY(-50vh)",
     zIndex: "10",
@@ -80,15 +89,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     [theme.breakpoints.up("md")]: {
-      display: "none"
-    }
+      display: "none",
+    },
   },
   displayNav: {
     minHeight: "100vh",
     width: "100%",
     backgroundColor: "#0009",
     backdropFilter: "blur(8px)",
-    position: 'fixed',
+    position: "fixed",
     top: 0,
     zIndex: "10",
     transform: "translateY(0vh)",
@@ -96,19 +105,19 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     [theme.breakpoints.up("md")]: {
-      display: "none"
-    }
+      display: "none",
+    },
   },
   navHeader: {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
     width: "80%",
-    marginTop: 30
+    marginTop: 30,
   },
   closeIcon: {
     height: 18,
-    marginTop: 10
+    marginTop: 10,
   },
   searchBar: {
     display: "flex",
@@ -119,7 +128,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     width: "80%",
     maxWidth: 400,
-    marginTop: 50
+    marginTop: 50,
   },
   searchInput: {
     outline: "none",
@@ -127,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
     width: "90%",
     marginLeft: 10,
     height: "100%",
-    fontSize: "18px"
+    fontSize: "18px",
   },
   navLinkPhone: {
     borderBottom: "1px solid gray",
@@ -135,8 +144,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffff",
     textDecoration: "none",
     padding: 20,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 }));
 
 interface Props {
@@ -165,21 +174,19 @@ function HideOnScroll(props: Props) {
 }
 
 export default function Navbar(props: Props) {
-
   const classes = useStyles();
   // Displaying Phone Navbar
   const [style, setStyle] = useState("navbarPhone");
   const [toolbarStyle, setToolbarStyle] = useState("toobarStyle");
 
-  // Changing Style 
+  // Changing Style
   const changeStyle = () => {
-    if(style==="navbarPhone"){
+    if (style === "navbarPhone") {
       setStyle("displayNav");
-      setToolbarStyle("hideToolbar")
-    }
-    else{
+      setToolbarStyle("hideToolbar");
+    } else {
       setStyle("navbarPhone");
-      setToolbarStyle("toolbarStyle")
+      setToolbarStyle("toolbarStyle");
     }
   };
 
@@ -196,8 +203,14 @@ export default function Navbar(props: Props) {
           <Toolbar className={toolbarStyle} sx={{ backgroundColor: "#ffc000" }}>
             <Box className={classes.navBar}>
               <Box className={classes.navLeft}>
-                <Link to="/" className={classes.navLink}><Typography>Home</Typography></Link>
-                <Link to="/" className={classes.navLink}><Typography>About Us</Typography></Link>
+                <Link to="/" className={classes.navLink}>
+                  <HomeIcon />{" "}
+                  <Typography className={classes.linkText}>Home</Typography>
+                </Link>
+                <Link to="/" className={classes.navLink}>
+                  <InfoIcon />{" "}
+                  <Typography className={classes.linkText}>About Us</Typography>
+                </Link>
               </Box>
               <Box className={classes.navMiddle}>
                 <Link to="/">
@@ -205,42 +218,73 @@ export default function Navbar(props: Props) {
                 </Link>
               </Box>
               <Box className={classes.navRight}>
-                <Link to="/" className={classes.navLink}><Typography>Services</Typography></Link>
-                <Link to="/" className={classes.navLink}><Typography>Find your location</Typography></Link>
+                <Link to="/" className={classes.navLink}>
+                  <MiscellaneousServicesIcon />{" "}
+                  <Typography className={classes.linkText}>Services</Typography>
+                </Link>
+                <Link to="/" className={classes.navLink}>
+                  <LocationSearchingIcon />{" "}
+                  <Typography className={classes.linkText}>
+                    Find your location
+                  </Typography>
+                </Link>
               </Box>
-              <img onClick={() => changeStyle()} className={classes.menuIcon} src="/images/icons/menuIcon.png" alt="" />
+              <img
+                onClick={() => changeStyle()}
+                className={classes.menuIcon}
+                src="/images/icons/menuIcon.png"
+                alt=""
+              />
             </Box>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
       <Toolbar />
 
-
       {/* Navbar For Phone Screen */}
       <Box className={style}>
         <Box className={classes.navHeader}>
-
           {/* Logo */}
           <Link to="/">
             <img className={classes.logo} src="/images/logo.png" alt="" />
           </Link>
           <Link to="/" onClick={() => changeStyle()}>
-            <img className={classes.closeIcon} src="/images/icons/crossIcon.png" alt="" />
+            <img
+              className={classes.closeIcon}
+              src="/images/icons/crossIcon.png"
+              alt=""
+            />
           </Link>
         </Box>
         <br />
         <br />
 
         {/*  Nav Links  */}
-        <Link to="/" className={classes.navLinkPhone}><Typography>Home</Typography></Link>
-        <Link to="/" className={classes.navLinkPhone}><Typography>About Us</Typography></Link>
-        <Link to="/" className={classes.navLinkPhone}><Typography>Services</Typography></Link>
-        <Link to="/" className={classes.navLinkPhone}><Typography>Find your location</Typography></Link>
+        <Link to="/" className={classes.navLinkPhone}>
+          <Typography>Home</Typography>
+        </Link>
+        <Link to="/" className={classes.navLinkPhone}>
+          <Typography>About Us</Typography>
+        </Link>
+        <Link to="/" className={classes.navLinkPhone}>
+          <Typography>Services</Typography>
+        </Link>
+        <Link to="/" className={classes.navLinkPhone}>
+          <Typography>Find your location</Typography>
+        </Link>
 
         {/* Search Bar */}
         <Box className={classes.searchBar}>
-          <input type="text" className={classes.searchInput} placeholder="Search location" />
-          <img className={classes.searchIcon} src="/images/icons/searchIcon.png" alt="" />
+          <input
+            type="text"
+            className={classes.searchInput}
+            placeholder="Search location"
+          />
+          <img
+            className={classes.searchIcon}
+            src="/images/icons/searchIcon.png"
+            alt=""
+          />
         </Box>
       </Box>
     </React.Fragment>

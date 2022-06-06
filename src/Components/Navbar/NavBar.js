@@ -207,7 +207,7 @@ export default function Navbar(props: Props) {
                   <HomeIcon />{" "}
                   <Typography className={classes.linkText}>Home</Typography>
                 </Link>
-                <Link to="/" className={classes.navLink}>
+                <Link to="/about" className={classes.navLink}>
                   <InfoIcon />{" "}
                   <Typography className={classes.linkText}>About Us</Typography>
                 </Link>
@@ -218,11 +218,11 @@ export default function Navbar(props: Props) {
                 </Link>
               </Box>
               <Box className={classes.navRight}>
-                <Link to="/" className={classes.navLink}>
+                <Link to="/services" className={classes.navLink}>
                   <MiscellaneousServicesIcon />{" "}
                   <Typography className={classes.linkText}>Services</Typography>
                 </Link>
-                <Link to="/" className={classes.navLink}>
+                <Link to="/findlocation" className={classes.navLink}>
                   <LocationSearchingIcon />{" "}
                   <Typography className={classes.linkText}>
                     Find your location
@@ -263,13 +263,13 @@ export default function Navbar(props: Props) {
         <Link to="/" className={classes.navLinkPhone}>
           <Typography>Home</Typography>
         </Link>
-        <Link to="/" className={classes.navLinkPhone}>
+        <Link to="/about" className={classes.navLinkPhone}>
           <Typography>About Us</Typography>
         </Link>
-        <Link to="/" className={classes.navLinkPhone}>
+        <Link to="/services" className={classes.navLinkPhone}>
           <Typography>Services</Typography>
         </Link>
-        <Link to="/" className={classes.navLinkPhone}>
+        <Link to="/findlocation" className={classes.navLinkPhone}>
           <Typography>Find your location</Typography>
         </Link>
 

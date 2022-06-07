@@ -72,7 +72,7 @@ function SearchBar({ placeholder, data }) {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
+      return value.city_name.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
@@ -118,7 +118,7 @@ function SearchBar({ placeholder, data }) {
                   alt=""
                 />
                 <Typography className={classes.dataItem}>
-                  {value.title}{" "}
+                  {value.city_name}{" "}
                 </Typography>
               </a>
             );

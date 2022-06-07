@@ -1,8 +1,9 @@
 import { Box, Container, makeStyles, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CallButton from "./CallButton";
 import SearchBar from "./SearchBar";
 import Locations from "../Data.json"
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -77,6 +78,17 @@ const useStyles = makeStyles((theme) => ({
 function Hero() {
   
   const classes = useStyles();
+  const url = "http://towing-api.3utilities.com:786/search"
+  const [ search, setSearch ] = useState([]);
+
+  useEffect(() => {
+    axios.get(url)
+    .then((res) => {
+      setSearch(res.data)
+      console.log("Search")
+      console.log(res.data)
+    })
+  }, []);
 
   return (
     <Box className={classes.hero}>
@@ -90,7 +102,7 @@ function Hero() {
         <Typography variant="h6">
           24 HOUR EMERGENCY SERVICE & ROADSIDE ASSISTANCE
         </Typography>
-        <SearchBar placeholder="Search Location..." data={Locations} />
+        <SearchBar placeholder="Search Location..." data={search} />
       </Container>
     </Box>
   );

@@ -65,9 +65,9 @@ const useStyles = makeStyles((theme) => ({
       color: "#fff",
     },
   },
-  serviceLink:{
-    display:"flex",
-    alignItems:"center"
+  serviceLink: {
+    display: "flex",
+    alignItems: "center",
   },
   menuIcon: {
     display: "block",
@@ -193,7 +193,7 @@ export default function Navbar(props: Props) {
   useEffect(() => {
     axios.get(url).then((res) => {
       setServices(res.data);
-      console.log(res);
+      console.log(res.data);
     });
   }, []);
 
@@ -234,30 +234,18 @@ export default function Navbar(props: Props) {
                 </Link>
               </Box>
               <Box className={classes.navRight}>
-                <Link to="/services" className={classes.navLink}>
-                  <PopupState variant="popover" popupId="demo-popup-menu">
-                    {(popupState) => (
-                      <React.Fragment>
-                        <Box  className={classes.serviceLink} {...bindTrigger(popupState)}>
-                          <Typography> Services </Typography>
-                          <KeyboardArrowDownIcon />
-                        </Box>
-                        <Menu {...bindMenu(popupState)}>
-                          {services.map((val, key) => {
-                            return (
-                              <Link
-                                to={val.route}
-                                className={classes.serviceName}
-                              >
-                                <ManageAccountsIcon />
-                                <Typography>{val.name}</Typography>
-                              </Link>
-                            );
-                          })}
-                        </Menu>
-                      </React.Fragment>
-                    )}
-                  </PopupState>
+                <Link to="/services" className="nav__link">
+                  <Typography className="nav__item">Services</Typography>
+                  <Box className="nav__dropDown">
+                    {services.map((val, key) => {
+                      return (
+                        <Link to={val.route} className={classes.serviceName}>
+                          <ManageAccountsIcon />
+                          <Typography className="service">{val.name}</Typography>
+                        </Link>
+                      );
+                    })}
+                  </Box>
                 </Link>
                 <Link to="/findlocation" className={classes.navLink}>
                   <Typography className={classes.linkText}>
@@ -302,8 +290,18 @@ export default function Navbar(props: Props) {
         <Link to="/about" className={classes.navLinkPhone}>
           <Typography>About Us</Typography>
         </Link>
-        <Link to="/services" className={classes.navLinkPhone}>
-          <Typography>Services</Typography>
+        <Link to="/services" className="nav__link__phone">
+          <Typography className="nav__item">Services</Typography>
+          <Box className="nav__dropDown__phone">
+            {services.map((val, key) => {
+              return (
+                <Link to={val.route} className={classes.serviceName}>
+                  <ManageAccountsIcon />
+                  <Typography>{val.name}</Typography>
+                </Link>
+              );
+            })}
+          </Box>
         </Link>
         <Link to="/findlocation" className={classes.navLinkPhone}>
           <Typography>Find your location</Typography>

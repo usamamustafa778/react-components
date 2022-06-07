@@ -7,12 +7,18 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />}></Route>
-      <Route path="/about" element={<AboutPage />}></Route>
-      <Route path="/findlocation" element={<LocationPage />}></Route>
-      <Route path="/services" element={<ServicesPage />}></Route>
-    </Routes>
+    <>
+      <HomePage />
+      {/* <Routes>
+        <Route path="/" element={<HomePage />}>
+          <Route path="/:state"></Route>
+          <Route path="/:state/:city"></Route>
+        </Route>
+        <Route path="/about" element={<AboutPage />}></Route>
+        <Route path="/findlocation" element={<LocationPage />}></Route>
+        <Route path="/services" element={<ServicesPage />}></Route>
+      </Routes> */}
+    </>
   );
 }
 

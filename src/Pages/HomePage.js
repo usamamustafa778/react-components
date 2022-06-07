@@ -12,44 +12,40 @@ import { Container, makeStyles, Box, Typography } from "@material-ui/core";
 import DocumentMeta from "react-document-meta";
 import Navbar from "../Components/Navbar/NavBar";
 
-
 const useStyles = makeStyles({
-  apiContainer:{
-    padding:"50px 10px"
+  apiContainer: {
+    padding: "50px 10px",
   },
   heading: {
     textAlign: "center",
     marginTop: 30,
     fontWeight: 600,
   },
-  listItem:{
-    listStyle:"none",
-    color:"#010101",
-    margin:"5px 0px"
+  listItem: {
+    listStyle: "none",
+    color: "#010101",
+    margin: "5px 0px",
   },
-  list:{
-    columnCount:"4",
-    WebkitColumnCount:"4"
-  }
-})
+  list: {
+    columnCount: "4",
+    WebkitColumnCount: "4",
+  },
+});
 
 function HomePage() {
   const [apiData, setApiData] = useState([]);
   const [apiData2, setApiData2] = useState([]);
   const [apiData3, setApiData3] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [stateName, setStateName] = useState("Towing Us");
   let [color, setColor] = useState("#ffffff");
 
   useEffect(() => {
     const apiDatas = async () => {
       try {
-        setLoading(true);
         const response = await axios.get(
           "http://api.3utilities.com:86/states?token=MucabF_PcS_KcjU_ucabHPc"
         );
         setApiData(response.data);
-        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -79,7 +75,7 @@ function HomePage() {
 
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar />
       <Hero />
       <Work />
       <Services />
@@ -91,51 +87,49 @@ function HomePage() {
             path="/"
             element={
               <Container className={classes.apiContainer}>
-                <Typography className={classes.heading} variant="h4">Areas We Serve</Typography>
+                <Typography className={classes.heading} variant="h4">
+                  Areas We Serve
+                </Typography>
                 <ul className={classes.list}>
-                {states
-                  ? states.map((state, i) => (
-                      <Link
-                        className="item-list"
-                        key={i}
-                        onClick={() => {
-                          setStateName(state);
-                        }}
-                        to={`/${state.replace(/\s/g, "-")}`}
-                      >
-                        <li className={classes.listItem}>{state}</li>
-                      </Link>
-                    ))
-                  : null}
+                  {states
+                    ? states.map((state, i) => (
+                        <Link
+                          className="item-list"
+                          key={i}
+                          onClick={() => {
+                            setStateName(state);
+                          }}
+                          to={`/${state.replace(/\s/g, "-")}`}
+                        >
+                          <li className={classes.listItem}>{state}</li>
+                        </Link>
+                      ))
+                    : null}
                 </ul>
               </Container>
             }
           />{" "}
           <Route
-          path="/:state"
-          element={
-            <ServiceArea
-              loading={loading}
-              setLoading={setLoading}
-              setApiData2={setApiData2}
-              apiData2={apiData2}
-            />
-          }
-        ></Route>
-        <Route
-          path="/:state/:city"
-          element={
-            <>
-              <ZipCodes
-                zips={zips}
-                loading={loading}
-                setLoading={setLoading}
-                apiData3={apiData3}
-                setApiData3={setApiData3}
+            path="/:state"
+            element={
+              <ServiceArea
+                setApiData2={setApiData2}
+                apiData2={apiData2}
               />
-            </>
-          }
-        ></Route>
+            }
+          ></Route>
+          <Route
+            path="/:state/:city"
+            element={
+              <>
+                <ZipCodes
+                  zips={zips}
+                  apiData3={apiData3}
+                  setApiData3={setApiData3}
+                />
+              </>
+            }
+          ></Route>
         </Routes>
       </Box>
       <Footer />

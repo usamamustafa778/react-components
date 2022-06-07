@@ -62,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SearchBar({ placeholder, data }) {
+
+  
+
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 

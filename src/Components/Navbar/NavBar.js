@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -9,10 +9,13 @@ import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
-import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
-import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
+import axios from "axios";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const useStyles = makeStyles((theme) => ({
   navBar: {
@@ -56,16 +59,15 @@ const useStyles = makeStyles((theme) => ({
   navLink: {
     margin: "0px 20px",
     color: "#101010",
-    display: "flex",
-    alignItems: "center",
     textDecoration: "none",
     transition: "0.25s",
     "&:hover": {
       color: "#fff",
     },
   },
-  linkText: {
-    marginLeft: 10,
+  serviceLink:{
+    display:"flex",
+    alignItems:"center"
   },
   menuIcon: {
     display: "block",
@@ -146,6 +148,17 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     textAlign: "center",
   },
+  serviceName: {
+    color: "#000",
+    textDecoration: "none",
+    padding: "15px 30px",
+    display: "flex",
+    alignItems: "center",
+    transition: "0.15s",
+    "&:hover": {
+      backgroundColor: "#f3f3f3",
+    },
+  },
 }));
 
 interface Props {
@@ -174,6 +187,16 @@ function HideOnScroll(props: Props) {
 }
 
 export default function Navbar(props: Props) {
+  const url = "http://towing-api.3utilities.com:786/services";
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    axios.get(url).then((res) => {
+      setServices(res.data);
+      console.log(res);
+    });
+  }, []);
+
   const classes = useStyles();
   // Displaying Phone Navbar
   const [style, setStyle] = useState("navbarPhone");
@@ -190,11 +213,6 @@ export default function Navbar(props: Props) {
     }
   };
 
-  // Chaning Styling back to original
-  // const closeNav = () => {
-  //   setStyle("nabarPhone");
-  // };
-
   return (
     <React.Fragment>
       <CssBaseline />
@@ -204,11 +222,9 @@ export default function Navbar(props: Props) {
             <Box className={classes.navBar}>
               <Box className={classes.navLeft}>
                 <Link to="/" className={classes.navLink}>
-                  <HomeIcon />{" "}
                   <Typography className={classes.linkText}>Home</Typography>
                 </Link>
                 <Link to="/about" className={classes.navLink}>
-                  <InfoIcon />{" "}
                   <Typography className={classes.linkText}>About Us</Typography>
                 </Link>
               </Box>
@@ -219,11 +235,31 @@ export default function Navbar(props: Props) {
               </Box>
               <Box className={classes.navRight}>
                 <Link to="/services" className={classes.navLink}>
-                  <MiscellaneousServicesIcon />{" "}
-                  <Typography className={classes.linkText}>Services</Typography>
+                  <PopupState variant="popover" popupId="demo-popup-menu">
+                    {(popupState) => (
+                      <React.Fragment>
+                        <Box  className={classes.serviceLink} {...bindTrigger(popupState)}>
+                          <Typography> Services </Typography>
+                          <KeyboardArrowDownIcon />
+                        </Box>
+                        <Menu {...bindMenu(popupState)}>
+                          {services.map((val, key) => {
+                            return (
+                              <Link
+                                to={val.route}
+                                className={classes.serviceName}
+                              >
+                                <ManageAccountsIcon />
+                                <Typography>{val.name}</Typography>
+                              </Link>
+                            );
+                          })}
+                        </Menu>
+                      </React.Fragment>
+                    )}
+                  </PopupState>
                 </Link>
                 <Link to="/findlocation" className={classes.navLink}>
-                  <LocationSearchingIcon />{" "}
                   <Typography className={classes.linkText}>
                     Find your location
                   </Typography>

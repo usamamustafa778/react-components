@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function ServiceArea({ apiData2, setApiData2, loading, setLoading }) {
+function ServiceArea({ apiData2, setApiData2 }) {
   const { state, city } = useParams();
   console.log("name is :", state, city);
 

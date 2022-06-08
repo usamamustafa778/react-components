@@ -11,11 +11,6 @@ import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SearchBar from "../SearchBar";
 
 const useStyles = makeStyles((theme) => ({

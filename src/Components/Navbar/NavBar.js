@@ -16,6 +16,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import SearchBar from "../SearchBar";
 
 const useStyles = makeStyles((theme) => ({
   navBar: {
@@ -115,38 +116,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-between",
     width: "80%",
-    marginTop: 30,
+    marginTop: 20,
   },
   closeIcon: {
     height: 18,
     marginTop: 10,
-  },
-  searchBar: {
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: "#ffff",
-    justifyContent: "between",
-    borderRadius: "100px",
-    padding: 20,
-    width: "80%",
-    maxWidth: 400,
-    marginTop: 50,
-  },
-  searchInput: {
-    outline: "none",
-    border: "none",
-    width: "90%",
-    marginLeft: 10,
-    height: "100%",
-    fontSize: "18px",
-  },
-  navLinkPhone: {
-    borderBottom: "1px solid gray",
-    width: "80%",
-    color: "#ffff",
-    textDecoration: "none",
-    padding: 20,
-    textAlign: "center",
   },
   serviceName: {
     color: "#000",
@@ -187,6 +161,8 @@ function HideOnScroll(props: Props) {
 }
 
 export default function Navbar(props: Props) {
+  
+  // Fetching Services
   const url = "http://towing-api.3utilities.com:786/services";
   const [services, setServices] = useState([]);
 
@@ -195,6 +171,20 @@ export default function Navbar(props: Props) {
       setServices(res.data);
       console.log(res.data);
     });
+  }, []);
+
+
+  // Fetching Search Items
+  const url2 = "http://towing-api.3utilities.com:786/search"
+  const [ search, setSearch ] = useState([]);
+
+  useEffect(() => {
+    axios.get(url2)
+    .then((res) => {
+      setSearch(res.data)
+      console.log("Search")
+      console.log(res.data)
+    })
   }, []);
 
   const classes = useStyles();
@@ -241,7 +231,9 @@ export default function Navbar(props: Props) {
                       return (
                         <Link to={val.route} className={classes.serviceName}>
                           <ManageAccountsIcon />
-                          <Typography className="service">{val.name}</Typography>
+                          <Typography className="service">
+                            {val.name}
+                          </Typography>
                         </Link>
                       );
                     })}
@@ -284,41 +276,36 @@ export default function Navbar(props: Props) {
         <br />
 
         {/*  Nav Links  */}
-        <Link to="/" className={classes.navLinkPhone}>
-          <Typography>Home</Typography>
-        </Link>
-        <Link to="/about" className={classes.navLinkPhone}>
-          <Typography>About Us</Typography>
-        </Link>
-        <Link to="/services" className="nav__link__phone">
-          <Typography className="nav__item">Services</Typography>
-          <Box className="nav__dropDown__phone">
-            {services.map((val, key) => {
-              return (
-                <Link to={val.route} className={classes.serviceName}>
-                  <ManageAccountsIcon />
-                  <Typography>{val.name}</Typography>
-                </Link>
-              );
-            })}
+        <Box className="phoneLandscape">
+          <Box className="navLinksPhone">
+            <Link to="/" className="nav__link__phone">
+              <Typography>Home</Typography>
+            </Link>
+            <Link to="/about" className="nav__link__phone">
+              <Typography>About Us</Typography>
+            </Link>
+            <Link to="/services" className="nav__link__phone">
+              <Typography className="nav__item">Services</Typography>
+              <Box className="nav__dropDown__phone">
+                {services.map((val, key) => {
+                  return (
+                    <Link to={val.route} className={classes.serviceName}>
+                      <ManageAccountsIcon />
+                      <Typography>{val.name}</Typography>
+                    </Link>
+                  );
+                })}
+              </Box>
+            </Link>
+            <Link to="/findlocation" className="nav__link__phone">
+              <Typography>Find your location</Typography>
+            </Link>
           </Box>
-        </Link>
-        <Link to="/findlocation" className={classes.navLinkPhone}>
-          <Typography>Find your location</Typography>
-        </Link>
 
-        {/* Search Bar */}
-        <Box className={classes.searchBar}>
-          <input
-            type="text"
-            className={classes.searchInput}
-            placeholder="Search location"
-          />
-          <img
-            className={classes.searchIcon}
-            src="/images/icons/searchIcon.png"
-            alt=""
-          />
+          {/* Search Bar */}
+          <Box className={classes.searchBar}>
+          <SearchBar placeholder="Search Location..." data={search} />
+          </Box>
         </Box>
       </Box>
     </React.Fragment>

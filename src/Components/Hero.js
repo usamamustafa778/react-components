@@ -21,8 +21,19 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     padding: "90px 0px",
   },
+  tagline:{
+    fontSize:"40px",
+    [theme.breakpoints.up("lg")]: {
+      fontSize:"70px"
+    },
+  },
+  taglineBottom:{
+    fontSize:"30px",
+    [theme.breakpoints.up("lg")]: {
+      fontSize:"50px"
+    },
+  },
   dividerLine: {
-    marginTop: 40,
     marginBottom: 10,
     height: 2,
     minWidth: 400,
@@ -30,47 +41,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#ffff",
     [theme.breakpoints.up("lg")]: {
       display: "block",
-    },
-  },
-  searchBar: {
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: "#ffff",
-    justifyContent: "between",
-    borderRadius: "100px",
-    padding: 12,
-    width: "100%",
-    maxWidth: 400,
-    marginTop: 20,
-  },
-  searchInput: {
-    outline: "none",
-    border: "none",
-    width: "90%",
-    marginLeft: 10,
-    height: "100%",
-    fontSize: "18px",
-  },
-  dataResult: {
-    width: 400,
-    height: 200,
-    borderRadius: 5,
-    textAlign: "left",
-    backgroundColor: "#ffff",
-    boxShadow: "#0009 0px 2px 10px",
-    marginTop: 5,
-    color: "#000",
-    overflowX: "hidden",
-    overflowY: "auto",
-    "&::-webkit-scrollbar": {
-      display: "none",
-    },
-  },
-  dataItem: {
-    padding: "15px 20px",
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: "#f3f3f3",
     },
   },
 }));
@@ -93,11 +63,12 @@ function Hero() {
   return (
     <Box className={classes.hero}>
       <Container className={classes.heroContainer}>
-        <Typography variant="h1">Towing Services</Typography>
+        <Typography className={classes.tagline}>Towing Services</Typography>
         <br />
-        <Typography variant="h2">LA, California</Typography>
+        <Typography className={classes.taglineBottom}>LA, California</Typography>
         <br />
         <CallButton />
+        <br />
         <Box className={classes.dividerLine}></Box>
         <Typography variant="h6">
           24 HOUR EMERGENCY SERVICE & ROADSIDE ASSISTANCE

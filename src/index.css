@@ -16,18 +16,21 @@ code {
     monospace;
 }
 
+
+
 .displayNav {
   min-height: 100vh;
   width: 100%;
   background-color: #0009;
   backdrop-filter: blur(8px);
-  position: fixed;
+  position:fixed;
   top: 0;
   z-index: 10;
   display: flex;
   transform: translateY(0vh);
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll !important;
 }
 
 .navbarPhone {
@@ -40,7 +43,7 @@ code {
   top: 0;
   display: flex;
   z-index: 10;
-  transform: translateY(-110vh);
+  transform: translateY(-150vh);
   flex-direction: column;
   align-items: center;
 }
@@ -51,25 +54,6 @@ code {
 
 .hideToolbar {
   display: none !important;
-}
-
-.nav__link__phone {
-  margin: 0px 20px;
-  color: #fff;
-  text-decoration: none;
-  border-bottom: 1px solid gray;
-  width: 80%;
-  text-align: center;
-  padding: 20px;
-}
-
-.nav__dropDown__phone{
-  background-color: #fff;
-  margin-top: 10px;
-  transition: 0.25s;
-  border-radius: 5px;
-  padding: 5px 0px;
-  display: none;
 }
 
 .nav__link__phone:hover > .nav__dropDown__phone{
@@ -102,4 +86,56 @@ code {
 
 .nav__link:hover>.nav__dropDown {
   display: block;
+}
+.navLinksPhone{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  width: 100%;
+}
+
+
+@media screen and (max-width:900px) {
+  .phoneLandscape{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 25px;
+  }
+  .nav__link__phone{
+    text-align: left;
+    width: 70%;
+    margin: 0px 20px;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid gray;
+    padding: 15px;
+  }
+  .nav__dropDown__phone{
+    background-color: #fff;
+    margin-top: -100px;
+    margin-left: 100px;
+    transition: 0.25s;
+    border-radius: 5px;
+    padding: 5px 0px;
+    text-align: left;
+    display: none;
+    position: absolute;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.405);
+  }
+ }
+
+ 
+@media screen and (max-width:500px){
+  .phoneLandscape{
+    grid-template-columns: 1fr;
+  }
+  .nav__link__phone {
+    text-align: center;
+    width: 100%;
+  }
+  .nav__dropDown__phone{
+    position: relative;
+    margin: 0;
+    margin-top: 15px;
+  }
 }

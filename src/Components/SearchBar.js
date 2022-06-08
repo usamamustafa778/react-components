@@ -11,9 +11,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "between",
     borderRadius: "100px",
     padding: 12,
-    width: 400,
+    width: 300,
     marginTop: 20,
     color: "#000",
+    [theme.breakpoints.up("lg")]: {
+      width: 400,
+    },
   },
   searchInput: {
     outline: "none",
@@ -24,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "18px",
   },
   dataResult: {
-    width: 400,
+    width: 300,
     maxHeight: 250,
     position: "absolute",
     borderRadius:20,
@@ -37,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     overflowY: "auto",
     "&::-webkit-scrollbar": {
       display: "none",
+    },
+    [theme.breakpoints.up("lg")]: {
+      width: 400,
     },
   },
   searchImg:{

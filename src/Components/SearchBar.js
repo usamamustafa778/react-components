@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import { Box, makeStyles, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   searchBar: {
@@ -117,7 +118,7 @@ function SearchBar({ placeholder, data }) {
         <Box className={classes.dataResult}>
           {filteredData.slice(0, 15).map((value, key) => {
             return (
-              <a className={classes.dataLink} href={value.link} target="_blank">
+              <Link className={classes.dataLink} to={value.city_route} >
                 <img
                   className={classes.searchImg}
                   src="https://static.toiimg.com/thumb/msid-77416935,width-900,height-1200,resizemode-6.cms"
@@ -126,7 +127,7 @@ function SearchBar({ placeholder, data }) {
                 <Typography className={classes.dataItem}>
                   {value.city_name}{" "}
                 </Typography>
-              </a>
+              </Link>
             );
           })}
         </Box>

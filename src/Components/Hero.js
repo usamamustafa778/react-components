@@ -2,7 +2,6 @@ import { Box, Container, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import CallButton from "./CallButton";
 import SearchBar from "./SearchBar";
-import Locations from "../Data.json"
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({

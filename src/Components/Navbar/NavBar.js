@@ -23,28 +23,21 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     [theme.breakpoints.up("md")]: {
       display: "grid",
-      gridTemplateColumns: "1fr 0.75fr 1fr",
+      gridTemplateColumns: "0.25fr 1fr",
     },
   },
   navLeft: {
-    display: "none",
+    display: "flex",
     alignItems: "center",
-    justifyContent: "end",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
+    justifyContent: "center",
   },
   navRight: {
     display: "none",
     alignItems: "center",
+    justifyContent:"end",
     [theme.breakpoints.up("md")]: {
       display: "flex",
     },
-  },
-  navMiddle: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
   logo: {
     height: 50,
@@ -206,19 +199,17 @@ export default function Navbar(props: Props) {
           <Toolbar className={toolbarStyle} sx={{ backgroundColor: "#ffc000" }}>
             <Box className={classes.navBar}>
               <Box className={classes.navLeft}>
-                <Link to="/" className={classes.navLink}>
-                  <Typography className={classes.linkText}>Home</Typography>
-                </Link>
-                <Link to="/about" className={classes.navLink}>
-                  <Typography className={classes.linkText}>About Us</Typography>
-                </Link>
-              </Box>
-              <Box className={classes.navMiddle}>
                 <Link to="/">
                   <img className={classes.logo} src="/images/logo.png" alt="" />
                 </Link>
               </Box>
               <Box className={classes.navRight}>
+              <Link to="/" className={classes.navLink}>
+                  <Typography className={classes.linkText}>Home</Typography>
+                </Link>
+                <Link to="/about" className={classes.navLink}>
+                  <Typography className={classes.linkText}>About Us</Typography>
+                </Link>
                 <Link to="/services" className="nav__link">
                   <Typography className="nav__item">Services</Typography>
                   <Box className="nav__dropDown">

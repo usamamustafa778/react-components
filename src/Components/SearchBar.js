@@ -49,6 +49,13 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 8,
     borderRadius: 5,
   },
+  dataService: {
+    color: "gray",
+    fontSize: 12,
+  },
+  dataItem:{
+    
+  },
   dataLink: {
     color: "#000",
     textDecoration: "none",
@@ -83,7 +90,7 @@ function SearchBar({ placeholder, data }) {
       });
     }, 500);
   };
-  
+
   const handleFilter = (event) => {
     callApi();
     const searchWord = event.target.value;
@@ -98,7 +105,6 @@ function SearchBar({ placeholder, data }) {
       setFilteredData(newFilter);
     }
   };
-
 
   const clearInput = () => {
     setFilteredData([]);
@@ -135,9 +141,14 @@ function SearchBar({ placeholder, data }) {
                   src="https://static.toiimg.com/thumb/msid-77416935,width-900,height-1200,resizemode-6.cms"
                   alt=""
                 />
-                <Typography className={classes.dataItem}>
-                  {value.city_name}{" "}
-                </Typography>
+                <Box className={classes.dataItem}>
+                  <Typography>
+                    {value.state_name}, {value.city_name}
+                  </Typography>
+                  <Typography className={classes.dataService}>
+                    {value.service_name}{" "}
+                  </Typography>
+                </Box>
               </Link>
             );
           })}

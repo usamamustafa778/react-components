@@ -60,7 +60,7 @@ function Hero() {
         <Typography variant="h6">
           24 HOUR EMERGENCY SERVICE & ROADSIDE ASSISTANCE
         </Typography>
-        <SearchBar placeholder="Search Location..." />
+        <SearchBar placeholder="Search City..." />
       </Container>
     </Box>
   );
